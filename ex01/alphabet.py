@@ -1,6 +1,7 @@
 import random
 import datetime
 
+
 num_of_alphabet = 26  # 全アルファベット数
 num_of_all_chars = 10 # 対象文字数
 num_of_abs_chars = 2  # 欠損文字数
