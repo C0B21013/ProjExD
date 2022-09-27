@@ -45,12 +45,9 @@ def kaito(seikai):
 
 
 if __name__ == "__main__":
-    st = datetime.datetime.now()
     alphabet = [chr(i+65) for i in range(num_of_alphabet)]
     for _ in range(num_of_trials):
         abs_chars = shutudai(alphabet)  
         ret = kaito(abs_chars)
         if ret:
             break
-    ed = datetime.datetime.now()
-    print(str((ed-st).seconds)+"秒")
