@@ -11,7 +11,7 @@ def shutudai(alphabet):
     
     # 全アルファベットから，対象文字をランダムに10文字選ぶ
     all_chars = random.sample(alphabet, num_of_all_chars)
-    print("対象文字：", end="")
+    print("対象字：", end="")
     for c in sorted(all_chars): 
         print(c, end=" ")
     print()
