@@ -9,7 +9,6 @@ ans_list=[
 num = randint(0,2)
 
 def shutudai():
-
     print("問題：\n"+ans_list[num][0])
 
 def kaito():
