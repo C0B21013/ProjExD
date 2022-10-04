@@ -4,7 +4,7 @@ import tkinter.messagebox as tkm
 root = tk.Tk()
 root.title("calc")
 root.geometry("375x440")
-root.resizable(width=False, height=False)
+#root.resizable(width=False, height=False)
 
 def num_click(event): #数字をクリックした際の反応
     btn = event.widget
@@ -47,21 +47,13 @@ button = tk.Button(text="C",font=("Ricty Diminished",30),width=4,height=1)
 button.bind("<1>",clear_click)
 button.grid(row = 1, column = 3)
 
-button = tk.Button(text="/",font=("Ricty Diminished",30),width=4,height=1)
-button.bind("<1>",num_click)
-button.grid(row = 2, column = 3)
+ope=["/","*","-","+"]
 
-button = tk.Button(text="*",font=("Ricty Diminished",30),width=4,height=1)
-button.bind("<1>",num_click)
-button.grid(row = 3, column = 3)
-
-button = tk.Button(text="-",font=("Ricty Diminished",30),width=4,height=1)
-button.bind("<1>",num_click)
-button.grid(row = 4, column = 3)
-
-button = tk.Button(text="+",font=("Ricty Diminished",30),width=4,height=1)
-button.bind("<1>",num_click)
-button.grid(row = 5, column = 3)
+for op in enumerate(ope):
+    button = tk.Button(text=f"{op}",font=("Ricty Diminished",30),width=4,height=1)
+    button.bind("<1>",num_click)
+    for i in range(3,5):
+        button.grid(row = i, column = 3)
 
 button = tk.Button(text="=",font=("Ricty Diminished",30),width=4,height=1)
 button.bind("<1>",equal_click)
