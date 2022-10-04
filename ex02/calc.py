@@ -6,11 +6,10 @@ root.title("calc")
 root.geometry("375x440")
 root.resizable(width=False, height=False)
 
-def num_click(event):
+def num_click(event): #数字をクリックした際の反応
     btn = event.widget
     txt = btn["text"]
     entry.insert(tk.END,txt)
-    #tkm.showinfo(txt,f"[{txt}]のボタンをクリック")
 
 def equal_click(event):
     eq=entry.get()
@@ -71,6 +70,8 @@ button.grid(row = 5, column = 2)
 button = tk.Button(text=".",font=("Ricty Diminished",30),width=4,height=1)
 button.bind("<1>",num_click)
 button.grid(row = 5, column = 1)
+
+    
 
 r, c = 2, 0
 for i, num in enumerate(range(9,-1,-1),1):
