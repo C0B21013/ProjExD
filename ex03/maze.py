@@ -13,15 +13,20 @@ def key_up(event):
 
 
 def main_proc():
+    global mx, my
     global cx, cy
+    
     if key =="Up":
-        cy-=20
+        my -= 1
     if key =="Down":
-        cy+=20
+        my += 1
     if key =="Left":
-        cx-=20
+        mx -= 1
     if key =="Right":
-        cx+=20
+        mx += 1
+    
+    cx, cy =mx*100 + 50, my*100 +50
+
     canv.coords("tori",cx,cy)
     root.after(100,main_proc)
 
@@ -37,7 +42,8 @@ if __name__ == "__main__":
     mm.show_maze(canv,maze_list)
 
     tori = tk.PhotoImage(file="C:/Users/C0B21013/Documents/ProjExD2022/fig/3.png")
-    cx,cy = 300, 400 #効果トンの座標
+    mx, my = 1, 1
+    cx, cy = mx*100 + 50, my*100 +50
     canv.create_image(cx,cy,image=tori,tag="tori")
 
     key = "" #現在押されているキー
