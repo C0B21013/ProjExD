@@ -3,7 +3,7 @@ from calendar import c
 import tkinter as tk
 import maze_maker as mm
 
-def count_up():
+def count_up(): #タイマー機能
     global tmr
     tmr = tmr+1
     label["text"]=tmr
@@ -49,7 +49,7 @@ def main_proc():
             mx -= 1
         tori = tk.PhotoImage(file="fig/8.png")
 
-        
+
     
     canv.delete("tori")
     canv.create_image(cx,cy,image=tori,tag="tori")
