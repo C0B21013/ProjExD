@@ -50,8 +50,7 @@ def main_proc():
             mx -= 1
         tori = tk.PhotoImage(file="fig/8.png")
 
-
-    
+    #こうかとんの移動、画像切り替え
     canv.delete("tori")
     canv.create_image(cx,cy,image=tori,tag="tori")
     #canv.coords("tori",cx,cy)
