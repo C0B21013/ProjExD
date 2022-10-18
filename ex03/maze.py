@@ -34,6 +34,7 @@ if __name__ == "__main__":
     canv.pack()
 
     maze_list= mm.make_maze(15,9)
+    mm.show_maze(canv,maze_list)
 
     tori = tk.PhotoImage(file="C:/Users/C0B21013/Documents/ProjExD2022/fig/3.png")
     cx,cy = 300, 400 #効果トンの座標
