@@ -9,6 +9,7 @@ def count_up():
     label["text"]=tmr
     root.after(1000,count_up)
 
+
 def key_down(event):
     global key
     key = event.keysym
@@ -35,10 +36,8 @@ def main_proc():
     if key =="Right":
         tori = tk.PhotoImage(file="fig/2.png")
         mx += 1
-
     if maze_list[my][mx]==0:
         cx, cy =mx*100 + 50, my*100 +50
-    
     else:
         if key =="Up":
             my += 1
@@ -49,7 +48,8 @@ def main_proc():
         if key =="Right":
             mx -= 1
         tori = tk.PhotoImage(file="fig/8.png")
-    
+
+        
     
     canv.delete("tori")
     canv.create_image(cx,cy,image=tori,tag="tori")
