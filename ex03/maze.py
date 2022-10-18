@@ -3,7 +3,8 @@ from calendar import c
 import tkinter as tk
 import maze_maker as mm
 
-def count_up():  #タイマー機能
+#タイマー機能
+def count_up():
     global tmr
     tmr = tmr+1
     label["text"]=tmr
