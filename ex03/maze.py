@@ -1,3 +1,4 @@
+from calendar import c
 import tkinter as tk
 import maze_maker as mm
 
@@ -24,8 +25,19 @@ def main_proc():
         mx -= 1
     if key =="Right":
         mx += 1
+
+    if maze_list[my][mx]==0:
+        cx, cy =mx*100 + 50, my*100 +50
     
-    cx, cy =mx*100 + 50, my*100 +50
+    else:
+        if key =="Up":
+            my += 1
+        if key =="Down":
+            my -= 1
+        if key =="Left":
+            mx += 1
+        if key =="Right":
+            mx -= 1
 
     canv.coords("tori",cx,cy)
     root.after(100,main_proc)
