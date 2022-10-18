@@ -25,6 +25,7 @@ def main_proc():
     global mx, my
     global cx, cy
     global tori
+
     if key =="Up":
         tori = tk.PhotoImage(file="fig/5.png")
         my -= 1
@@ -39,6 +40,7 @@ def main_proc():
         mx += 1
     if maze_list[my][mx]==0:
         cx, cy =mx*100 + 50, my*100 +50
+
     else:
         if key =="Up":
             my += 1
@@ -48,12 +50,11 @@ def main_proc():
             mx += 1
         if key =="Right":
             mx -= 1
-        tori = tk.PhotoImage(file="fig/8.png")
+            tori = tk.PhotoImage(file="fig/8.png")
 
     #こうかとんの移動、画像切り替え
     canv.delete("tori")
     canv.create_image(cx,cy,image=tori,tag="tori")
-    #canv.coords("tori",cx,cy)
     root.after(150,main_proc)
 
 
