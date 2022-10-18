@@ -1,5 +1,5 @@
 import tkinter as tk
-import maze_maker
+import maze_maker as mm
 
 
 def key_down(event):
@@ -32,6 +32,8 @@ if __name__ == "__main__":
 
     canv = tk.Canvas(root, width=1500,height=900,bg="black")
     canv.pack()
+
+    maze_list= mm.make_maze(15,9)
 
     tori = tk.PhotoImage(file="C:/Users/C0B21013/Documents/ProjExD2022/fig/3.png")
     cx,cy = 300, 400 #効果トンの座標
