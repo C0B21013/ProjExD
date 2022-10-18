@@ -5,10 +5,15 @@ def key_down(event):
     key = event.keysym
 
 
+def key_up(event):
+    global key
+    key = ""
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん")
-    
+
     canv = tk.Canvas(root, width=1500,height=900,bg="black")
     canv.pack()
 
@@ -18,5 +23,6 @@ if __name__ == "__main__":
 
     key = "" #現在押されているキー
     root.bind("<KeyPress>",key_down)
+    root.bind("<KeyRelease>",key_up)
 
     root.mainloop()
