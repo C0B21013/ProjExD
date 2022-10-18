@@ -58,7 +58,7 @@ if __name__ == "__main__":
     cx, cy = mx*100 + 50, my*100 +50
     canv.create_image(cx,cy,image=tori,tag="tori")
 
-    key = "" #現在押されているキー
+    key = "" 
     root.bind("<KeyPress>",key_down)
     root.bind("<KeyRelease>",key_up)
 
