@@ -3,17 +3,23 @@ import sys
 
 
 def main():
+    #練習１
     pg.display.set_caption("逃げろこうかとん") #タイトルバー
     scrn_sfc = pg.display.set_mode((1600,800)) #画面を生成
-
     bg_sfc = pg.image.load("fig/pg_bg.jpg")
     bg_rct = bg_sfc.get_rect()
-    scrn_sfc.blit(bg_sfc,bg_rct)
-    
-    #テスト
-    pg.display.update()
+
+    #練習２
     clock = pg.time.Clock()
-    clock.tick(0.2)
+    while True:
+        scrn_sfc.blit(bg_sfc,bg_rct)
+        pg.display.update()
+        
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                return
+                
+        clock.tick(1000)
 
 
 if __name__ == "__main__":
