@@ -17,6 +17,11 @@ def check_bound(obj_rct, scr_rct):
     return yoko, tate
     
 
+
+
+
+
+
 def main():
     #練習１
     pg.display.set_caption("逃げろこうかとん") #タイトルバー
