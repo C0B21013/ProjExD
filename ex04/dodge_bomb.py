@@ -24,6 +24,16 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
+        
+        key_states = pg.key.get_pressed()
+        if key_states[pg.K_UP]:
+            tori_rct.centery -= 1 #こうかとんの座標を
+        if key_states[pg.K_DOWN]:
+            tori_rct.centery += 1 #こうかとんの座標を
+        if key_states[pg.K_LEFT]: 
+            tori_rct.centerx -= 1#こうかとんの座標を
+        if key_states[pg.K_RIGHT]:
+            tori_rct.centerx += 1 #こうかとんの座標を    
 
         scrn_sfc.blit(tori_sfc,tori_rct)
         pg.display.update()
