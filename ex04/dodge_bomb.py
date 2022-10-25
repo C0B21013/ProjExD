@@ -42,9 +42,11 @@ def main():
     pg.draw.circle(bomb_sfc,(5,5,5),(25,25),25)
     pg.draw.line(bomb_sfc,(200,180,140),(25,20),(40,0),10)
     bomb_rct = bomb_sfc.get_rect()
-    bomb_rct.centerx, bomb_rct.centery, = randint(0,scrn_rct.width),randint(0,scrn_rct.height)
+    bomb_rct.centerx, bomb_rct.centery, = \
+                randint(0,scrn_rct.width),\
+                randint(0,scrn_rct.height)
 
-    vx,vy= +2 ,+2
+    vx,vy= +1 ,+1
 
     #アイテム
     item_sfc = pg.Surface((50,50))
