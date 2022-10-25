@@ -29,7 +29,7 @@ def main():
     tori_sfc = pg.image.load("fig/6.png") #Surface
     tori_sfc = pg.transform.rotozoom(tori_sfc,0,2.0)
     tori_rct = tori_sfc.get_rect() #rect
-    tori_rct.center = 900,400
+    tori_rct.center = 150,150
 
     #練習５
     bomb_sfc = pg.Surface((50,50))
@@ -37,10 +37,8 @@ def main():
     pg.draw.circle(bomb_sfc,(5,5,5),(25,25),25)
     pg.draw.line(bomb_sfc,(200,180,140),(25,20),(40,0),10)#導火線追加
     bomb_rct = bomb_sfc.get_rect()
-    bomb_rct.centerx, bomb_rct.centery, = \
-                randint(0,scrn_rct.width),\
-                randint(0,scrn_rct.height)
-
+    bomb_rct.center = randint(600,(scrn_rct.width-100)),\
+                        randint(400,(scrn_rct.height-100))
     vx,vy= +1 ,+1
 
     #追加アイテム
@@ -48,8 +46,8 @@ def main():
     item_sfc.set_colorkey((0,0,0))
     pg.draw.circle(item_sfc,(255,255,0),(25,25),25)
     item_rct = item_sfc.get_rect()
-    item_rct.center = randint(0,(scrn_rct.width-100)),\
-                        randint(0,(scrn_rct.height-100))
+    item_rct.center = randint(600,(scrn_rct.width-100)),\
+                        randint(400,(scrn_rct.height-100))
 
     #練習２
     clock = pg.time.Clock()
