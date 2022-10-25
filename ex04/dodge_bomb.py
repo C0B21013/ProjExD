@@ -35,7 +35,7 @@ def main():
     bomb_sfc = pg.Surface((50,50))
     bomb_sfc.set_colorkey((0,0,0))
     pg.draw.circle(bomb_sfc,(5,5,5),(25,25),25)
-    pg.draw.line(bomb_sfc,(200,180,140),(25,20),(40,0),10)
+    pg.draw.line(bomb_sfc,(200,180,140),(25,20),(40,0),10)#導火線追加
     bomb_rct = bomb_sfc.get_rect()
     bomb_rct.centerx, bomb_rct.centery, = \
                 randint(0,scrn_rct.width),\
@@ -43,13 +43,13 @@ def main():
 
     vx,vy= +1 ,+1
 
-    #アイテム
+    #追加アイテム
     item_sfc = pg.Surface((50,50))
     item_sfc.set_colorkey((0,0,0))
     pg.draw.circle(item_sfc,(255,255,0),(25,25),25)
     item_rct = item_sfc.get_rect()
-    item_rct.center = randint(0,(scrn_rct.width-100)),randint(0,(scrn_rct.height-100))
-
+    item_rct.center = randint(0,(scrn_rct.width-100)),\
+                        randint(0,(scrn_rct.height-100))
 
     #練習２
     clock = pg.time.Clock()
@@ -64,7 +64,6 @@ def main():
         mouse_states = pg.mouse.get_pos()
         tori_rct.center = mouse_states
     
-
         scrn_sfc.blit(tori_sfc,tori_rct)
         scrn_sfc.blit(item_sfc,item_rct)
         
@@ -74,24 +73,27 @@ def main():
         vy *= tate
         bomb_rct.move_ip(vx,vy)
         scrn_sfc.blit(bomb_sfc,bomb_rct)
-
+        
+        #追加アイテムに触った時の動作
         if tori_rct.colliderect(item_rct):
             fonto = pg.font.Font(None,80)
-            txt = fonto.render(str("TEST"),True,(255,0,0))
+            txt = fonto.render(str("CLEAR"),True,(255,0,0))
             scrn_sfc.blit(txt,(800,400))
             
             pg.display.update()
             clock = pg.time.Clock()
             clock.tick(1)
             return
-
+        #爆弾に触った時の動作
         if tori_rct.colliderect(bomb_rct):
-
-            #ゲームオーバー
             scrn_sfc.blit(bg_sfc,bg_rct)
+
+            #こうかとんの切り替え
             tori_sfc = pg.image.load("fig/8.png")
             tori_sfc = pg.transform.rotozoom(tori_sfc,0,2.0)
             scrn_sfc.blit(tori_sfc,tori_rct)
+
+            #文字の表示
             fonto = pg.font.Font(None,80)
             txt = fonto.render(str("GAMEOVER"),True,(255,0,0))
             scrn_sfc.blit(txt,(800,400))
@@ -100,7 +102,6 @@ def main():
             clock.tick(0.5)
             return
             
-        
         pg.display.update()
         clock.tick(1000)
 
