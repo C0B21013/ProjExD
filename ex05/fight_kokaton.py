@@ -48,6 +48,7 @@ class Bird:
         self.blit(scr)
 
 
+#爆弾
 class Bomb:
     def __init__(self,color,radius,vxy,scr:Screen):
         self.sfc = pg.Surface((radius*2, radius*2)) # 空のSurface
@@ -70,6 +71,7 @@ class Bomb:
         self.blit(scr)
 
 
+#プレイ時間
 class Timer:
     def __init__(self,xy):
         self.start = time.time()
@@ -85,11 +87,13 @@ class Timer:
         self.rct = self.img.get_rect().move(self.txy)
         scr.sfc.blit(self.img, self.rct)
 
+
 #BGM追加
 class Music:
     def __init__(self,mus):
         pg.mixer.music.load(mus)
         pg.mixer.music.play(-1)
+
 
 #爆発演出（未完成）
 class Explosion:
@@ -103,6 +107,7 @@ class Explosion:
         pg.time.wait(1000)
 
 
+#ゲームオーバー画面
 class Gameover:
     def __init__(self):
         self.font = pg.font.Font(None, 110)
@@ -134,13 +139,16 @@ def main():
     bkd = Bomb((1,1,1),20,(+1,+1),scr)
     bkd1 = Bomb((1,1,1),20,(+1,+1),scr)
 
-    time = Timer((100,800))
+    time = Timer((100,800))#タイマー
 
     clock = pg.time.Clock()
 
-    bgm = Music("ex05/data/house_lo.wav")
+    bgm = Music("ex05/data/house_lo.wav")#BGM追加
 
-    exp = Explosion("C:/Users/C0B21013/Documents/ProjExD2022/ex05/data/explosion1.gif")
+    exp = Explosion("ex05/data/explosion1.gif")#爆発（未実装）
+
+    gov = Gameover()#ゲームオーバー画面
+
     while True:
         scr.blit()
         
@@ -149,15 +157,18 @@ def main():
                 return
 
         kkt.update(scr)
+
         bkd.update(scr)
+        
         bkd1.update(scr)
+        
         time.update(scr)
 
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
-
+            gov.blit(scr)
             return
         if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
-            
+            gov.blit(scr)
             return
 
         pg.display.update() #練習2
