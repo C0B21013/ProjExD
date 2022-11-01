@@ -85,7 +85,7 @@ class Timer:
         self.rct = self.img.get_rect().move(self.txy)
         scr.sfc.blit(self.img, self.rct)
 
-
+#BGM追加
 class Music:
     def __init__(self,mus):
         pg.mixer.music.load(mus)
