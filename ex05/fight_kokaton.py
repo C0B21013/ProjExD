@@ -103,6 +103,14 @@ class Explosion:
         pg.time.wait(1000)
 
 
+class Gameover:
+    def __init__(self):
+        self.font = pg.font.Font(None, 110)
+        self.text = self.font.render("GAME_OVER", True, (255, 0, 0))
+
+    def blit(self, scr):
+        scr.sfc.blit(self.text, [scr.rct.centerx/2, scr.rct.centery/2]) 
+
 def check_bound(obj_rct, scr_rct):
     """
     obj_rct：こうかとんrct，または，爆弾rct
