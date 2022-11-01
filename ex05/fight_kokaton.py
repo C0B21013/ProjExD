@@ -91,7 +91,7 @@ class Music:
         pg.mixer.music.load(mus)
         pg.mixer.music.play(-1)
 
-
+#爆発演出（未完成）
 class Explosion:
     def __init__(self,file):
         self.img = pg.image.load(file)
