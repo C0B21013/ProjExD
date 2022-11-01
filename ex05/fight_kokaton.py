@@ -3,6 +3,8 @@ from turtle import backward
 import pygame as pg
 import sys
 from random import randint
+import time
+import math
 
 
 class Screen:
@@ -51,10 +53,11 @@ class Bomb:
         self.sfc = pg.Surface((radius*2, radius*2)) # 空のSurface
         self.sfc.set_colorkey((0, 0, 0)) # 四隅の黒い部分を透過させる
         pg.draw.circle(self.sfc, color, (radius,radius), radius) # 爆弾用の円を描く
+        pg.draw.line(self.sfc,(200,180,140),(radius,radius),(radius/2,0),10)#導火線追加
         self.rct = self.sfc.get_rect()
         self.rct.centerx = randint(0, scr.rct.width)
         self.rct.centery = randint(0, scr.rct.height)
-        self.vx, self.vy = vxy 
+        self.vx, self.vy = vxy
 
     def blit(self,scr:Screen):
         scr.sfc.blit(self.sfc, self.rct) # 練習3
@@ -65,6 +68,42 @@ class Bomb:
         self.vx *= yoko
         self.vy *= tate
         self.blit(scr)
+
+
+class Timer:
+    def __init__(self,xy):
+        self.start = time.time()
+        self.font = pg.font.Font(None,70)
+        self.font.set_italic(1)
+        self.color = "white"
+        self.txy = xy
+
+    def update(self,scr:Screen):
+        self.time = time.time() - self.start
+        self.img = self.font.render(str(math.floor(self.time)),0,self.color)
+        self.rct = self.img.get_rect().move(self.txy)
+        scr.sfc.blit(self.img, self.rct)
+
+
+class Music:
+    def __init__(self,mus):
+        pg.mixer.music.load(mus)
+        pg.mixer.music.play(-1)
+
+
+class Explosion:
+    def __init__(self,file):
+        self.img = pg.image.load(file)
+        self.rct = self.img.get_rect()
+        self.frame = 0
+        
+    
+    def update(self,scr:Screen,x,y):
+        self.frame = 0
+        self.frame = self.frame + 1
+        self.rct = self.img.get_rect().move(x,y)
+        scr.sfc.blit(self.img, self.rct)
+        pg.time.wait(1000)
 
 
 def check_bound(obj_rct, scr_rct):
@@ -87,10 +126,16 @@ def main():
     
     kkt = Bird("fig/6.png",2.0,(900, 400))
 
-    bkd = Bomb((255,0,0),10,(+1,+1),scr)
+    bkd = Bomb((1,1,1),20,(+1,+1),scr)
+    bkd1 = Bomb((1,1,1),20,(+1,+1),scr)
 
-    clock = pg.time.Clock() # 練習1
+    time = Timer((100,800))
 
+    clock = pg.time.Clock()
+
+    bgm = Music("C:/Users/C0B21013/Documents/ProjExD2022/ex05/data/house_lo.wav")
+
+    exp = Explosion("C:/Users/C0B21013/Documents/ProjExD2022/ex05/data/explosion1.gif")
     while True:
         scr.blit()
         
@@ -100,7 +145,14 @@ def main():
 
         kkt.update(scr)
         bkd.update(scr)
+        bkd1.update(scr)
+        time.update(scr)
+
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
+            exp.update(scr,bkd.vx,bkd.vy)
+            return
+        if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
+            exp.update(scr,bkd1.vx,bkd1.vy)
             return
 
         pg.display.update() #練習2
