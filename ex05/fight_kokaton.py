@@ -77,7 +77,8 @@ class Timer:
         self.font.set_italic(1)
         self.color = "white"
         self.txy = xy
-
+    
+    
     def update(self,scr:Screen):
         self.time = time.time() - self.start
         self.img = self.font.render(str(math.floor(self.time)),0,self.color)
@@ -95,12 +96,8 @@ class Explosion:
     def __init__(self,file):
         self.img = pg.image.load(file)
         self.rct = self.img.get_rect()
-        self.frame = 0
-        
-    
+
     def update(self,scr:Screen,x,y):
-        self.frame = 0
-        self.frame = self.frame + 1
         self.rct = self.img.get_rect().move(x,y)
         scr.sfc.blit(self.img, self.rct)
         pg.time.wait(1000)
@@ -133,7 +130,7 @@ def main():
 
     clock = pg.time.Clock()
 
-    bgm = Music("C:/Users/C0B21013/Documents/ProjExD2022/ex05/data/house_lo.wav")
+    bgm = Music("ex05/data/house_lo.wav")
 
     exp = Explosion("C:/Users/C0B21013/Documents/ProjExD2022/ex05/data/explosion1.gif")
     while True:
@@ -149,10 +146,10 @@ def main():
         time.update(scr)
 
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
-            exp.update(scr,bkd.vx,bkd.vy)
+
             return
         if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
-            exp.update(scr,bkd1.vx,bkd1.vy)
+            
             return
 
         pg.display.update() #練習2
